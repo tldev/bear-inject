@@ -1,0 +1,16 @@
+node_modules/
+*.log
+
+# build output written into consumer repos (and this repo when running the
+# CLI here, e.g. from the e2e fixture)
+.bear-inject/
+
+# local-only configuration and secrets
+.env
+.env.*
+.dev.vars
+
+# e2e fixture install artifacts
+test/fixture-blog/node_modules/
+test/fixture-blog/bun.lock
+test/fixture-blog/.bear-inject/

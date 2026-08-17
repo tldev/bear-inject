@@ -1,0 +1,31 @@
+{
+  "name": "bear-inject",
+  "version": "0.1.0",
+  "description": "Inject analytics, subscribe forms, or any HTML/JS snippet into a Bear Blog via a Cloudflare Worker at the edge",
+  "type": "module",
+  "license": "MIT",
+  "repository": "github:tldev/bear-inject",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "bear-inject": "./bin/bear-inject.mjs"
+  },
+  "files": [
+    "bin",
+    "scripts",
+    "src",
+    "templates"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:e2e": "cd test/fixture-blog && bun install && DOMAIN=example.com VARS_JSON='{\"TEST_GREETING\":\"hello\"}' bunx bear-inject dry-run"
+  },
+  "dependencies": {
+    "wrangler": "^4.123.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.21.3",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,25 @@
+# Template scheduled drift check for a blog repo that depends on
+# bear-inject. Copy into your repo as .github/workflows/verify.yml. Catches
+# breakage that happens with no push, like a failed Bear cert renewal or a
+# Cloudflare setting changed by hand. Uses no credentials; it only reads
+# public pages.
+name: scheduled-verify
+
+on:
+  schedule:
+    - cron: "23 14 * * 1"
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      DOMAIN: ${{ vars.DOMAIN }}
+      INCLUDE_WWW: ${{ vars.INCLUDE_WWW }}
+      VARS_JSON: ${{ vars.VARS_JSON }}
+      FEED_PATH: ${{ vars.FEED_PATH }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bunx bear-inject verify

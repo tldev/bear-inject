@@ -1,0 +1,33 @@
+<!-- Inline (no-redirect) submit for the .bd-subscribe forms. Posts the same
+     fields to the same Buttondown endpoint in the background, then swaps the
+     form for a confirmation line. Without JS the forms still work via the
+     classic full-page flow. The var reference here is deliberate, it gates
+     this script on the same var as the forms: {{BUTTONDOWN_USERNAME}} -->
+<script>
+(function () {
+  "use strict";
+  document.querySelectorAll("form.bd-subscribe").forEach(function (form) {
+    form.addEventListener("submit", function (ev) {
+      var email = form.querySelector('input[type="email"]');
+      var button = form.querySelector("button");
+      if (!email || !button || !window.fetch) return; // classic flow
+      ev.preventDefault();
+      button.disabled = true;
+      button.textContent = "Subscribing…";
+      fetch(form.action, {
+        method: "POST",
+        mode: "no-cors",
+        body: new URLSearchParams({ email: email.value, embed: "1" }),
+      })
+        .then(function () {
+          form.innerHTML = '<span class="bd-text">Check your inbox to confirm</span>';
+        })
+        .catch(function () {
+          // network hiccup: programmatic submit skips this handler and
+          // falls back to the full-page Buttondown flow
+          form.submit();
+        });
+    });
+  });
+})();
+</script>

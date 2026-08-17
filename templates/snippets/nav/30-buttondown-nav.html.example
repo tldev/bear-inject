@@ -1,0 +1,4 @@
+<form class="bd-subscribe bd-nav" action="https://buttondown.com/api/emails/embed-subscribe/{{BUTTONDOWN_USERNAME}}" method="post">
+  <input type="email" name="email" required placeholder="you@example.com" aria-label="Email address">
+  <button type="submit">Subscribe</button>
+</form>

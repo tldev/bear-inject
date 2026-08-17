@@ -1,0 +1,75 @@
+<!-- Styling for the Buttondown subscribe forms (top/ and bottom/ snippets).
+     The {{BUTTONDOWN_USERNAME}} reference in the comment below is deliberate:
+     it gates this style on the same var as the forms, so unsetting the var
+     removes all three snippets together. -->
+<style>
+/* buttondown subscribe ({{BUTTONDOWN_USERNAME}}), colors come from Bear's
+   theme variables, so dark mode needs no extra rules */
+.bd-subscribe {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em;
+  margin: 1.6em 0;
+  padding: 1em 0;
+  border-top: 1px dashed;
+  border-bottom: 1px dashed;
+}
+.bd-subscribe .bd-text {
+  margin-right: 0.2em;
+}
+.bd-subscribe input[type="email"] {
+  flex: 1 1 11em;
+  min-width: 0;
+  font: inherit;
+  color: inherit;
+  background: var(--background-color, transparent);
+  border: 1px solid var(--text-color, #444);
+  border-radius: 5px;
+  padding: 0.45em 0.6em;
+}
+.bd-subscribe button {
+  font: inherit;
+  padding: 0.45em 1.1em;
+  border: 1px solid var(--heading-color, #222);
+  border-radius: 5px;
+  background: var(--heading-color, #222);
+  color: var(--background-color, #fff);
+  cursor: pointer;
+}
+.bd-subscribe button:hover {
+  background: var(--link-color, #3273dc);
+  border-color: var(--link-color, #3273dc);
+}
+
+/* Compact variant that sits inside the site nav row: links on the left,
+   form on the right at the same height; wraps below the links on narrow
+   screens. */
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1em;
+}
+.bd-subscribe.bd-nav {
+  margin: 0;
+  padding: 0;
+  border: none;
+  flex: 0 1 auto;
+}
+.bd-subscribe.bd-nav input[type="email"] {
+  flex: 0 1 11em;
+  font-size: 0.95em;
+  padding: 0.35em 0.5em;
+}
+.bd-subscribe.bd-nav button {
+  font-size: 0.95em;
+  padding: 0.35em 0.9em;
+}
+/* post-subscribe confirmation line, keep it on the nav row */
+.bd-subscribe.bd-nav .bd-text {
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+</style>

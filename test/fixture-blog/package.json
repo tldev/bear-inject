@@ -1,0 +1,7 @@
+{
+  "name": "fixture-blog",
+  "private": true,
+  "dependencies": {
+    "bear-inject": "file:../.."
+  }
+}
